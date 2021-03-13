@@ -17,13 +17,13 @@ public class ProfileServlet extends HttpServlet {
         writer.println("<html><body>");
 
         HttpSession session = request.getSession(false);
-        if (session != null) {
+        if (session.getAttribute("name") != null) {
             writer.println("Welcome " + session.getAttribute("name"));
-            writer.println("<br><a href='Actions'>Room reservation</a>");
+            writer.println("<br><a href='actions'>Room reservation</a>");
            // request.getRequestDispatcher("/Actions").include(request, response);
         }
         else {
-            writer.println("You should be first login.");
+            writer.println("You should login first.");
             request.getRequestDispatcher("index.jsp").include(request, response);
         }
 

@@ -32,7 +32,7 @@
 <div class="relative">
     <div class="message">
         <h1>
-            Hello,welcome to Nanjing Xuanwumen
+            Hello,welcome to my hotel... this is a test cite.
         </h1>
         <br>
         <form method="post" action="login">
@@ -48,7 +48,10 @@
             <br>
             <input type="nationalCode" name="nationalCode">
             <br>
-
+            <label>Password:</label>
+            <br>
+            <input type="password" name="password">
+            <br>
             <input type="submit" value="login">
         </form>
 
