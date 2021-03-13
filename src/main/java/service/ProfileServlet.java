@@ -20,7 +20,6 @@ public class ProfileServlet extends HttpServlet {
         if (session.getAttribute("name") != null) {
             writer.println("Welcome " + session.getAttribute("name"));
             writer.println("<br><a href='actions'>Room reservation</a>");
-           // request.getRequestDispatcher("/Actions").include(request, response);
         }
         else {
             writer.println("You should login first.");

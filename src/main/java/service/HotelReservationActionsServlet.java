@@ -64,13 +64,13 @@ public class HotelReservationActionsServlet extends HttpServlet {
                 "            <br>\n" +
                 "            <h3>Choose operation:</h3>\n" +
                 "            <br>\n" +
-                "            <input type=\"radio\" name=\"operation\" value=\"Reservea\">\n" +
+                "            <input type=\"radio\" name=\"operation\" value=\"reserve\">\n" +
                 "            <label>Reserve room</label><br>\n" +
-                "            <input type=\"radio\" name=\"operation\" value=\"Changing reservation\">\n" +
+                "            <input type=\"radio\" name=\"operation\" value=\"change_reserve\">\n" +
                 "            <label>Changing reservation</label><br>\n" +
-                "            <input type=\"radio\" name=\"operation\" value=\"See reservations\">\n" +
+                "            <input type=\"radio\" name=\"operation\" value=\"see_reserve\">\n" +
                 "            <label>See reservations</label><br>\n" +
-                "            <input type=\"radio\" name=\"operation\" value=\"Cancel reservations\">\n" +
+                "            <input type=\"radio\" name=\"operation\" value=\"cancel_reserve\">\n" +
                 "            <label>Cancel reservations</label><br><br>\n" +
                 "        </br>\n" +
                 "            <input type=\"submit\" value=\"Confirmation\">\n" +
