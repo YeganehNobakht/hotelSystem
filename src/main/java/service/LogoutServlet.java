@@ -14,7 +14,7 @@ public class LogoutServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
-
+        writer.println("<html><body style=\"background-color:powderblue;\">");
         HttpSession session = request.getSession(false);
         if (session != null) {
             session.invalidate();
@@ -25,8 +25,9 @@ public class LogoutServlet extends HttpServlet {
             writer.println("Please login first.");
             request.getRequestDispatcher("index.jsp").include(request, response);
         }
-
+        writer.println("</html></body>");
         writer.close();
+
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

@@ -14,7 +14,7 @@ public class ProfileServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
-        writer.println("<html><body>");
+        writer.println("<html><body style=\"background-color:powderblue;\">");
 
         HttpSession session = request.getSession(false);
         if (session.getAttribute("name") != null) {
@@ -22,7 +22,7 @@ public class ProfileServlet extends HttpServlet {
             writer.println("<br><a href='actions'>Room reservation</a>");
         }
         else {
-            writer.println("You should login first.");
+            writer.println("Please login first");
             request.getRequestDispatcher("index.jsp").include(request, response);
         }
 

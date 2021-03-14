@@ -18,7 +18,7 @@ LoginServlet extends HttpServlet {
         response.setContentType("text/html");
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
-        writer.println("<html><body>");
+        writer.println("<html><body style=\"background-color:powderblue;\">");
 
         String name = request.getParameter("name");
         String lastName = request.getParameter("lastName");
