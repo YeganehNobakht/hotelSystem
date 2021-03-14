@@ -15,7 +15,7 @@ public class RoomReservation {
     @Column
     private String lastName;
     @Column
-    private int nationalCode;
+    private String nationalCode;
     @Column
     private int capacity;
     @Column
@@ -24,10 +24,10 @@ public class RoomReservation {
     private java.sql.Date endDate;
     @Column
     //@GeneratedValue(strategy = GenerationType.SEQUENCE)
-    private int reserveCode;
+    private int reserveCode=10000;
 
 
-    public RoomReservation(String name, String lastName, int nationalCode, int capacity, java.sql.Date startDate, java.sql.Date endDate) {
+    public RoomReservation(String name, String lastName, String nationalCode, int capacity, java.sql.Date startDate, java.sql.Date endDate) {
         this.name = name;
         this.lastName = lastName;
         this.nationalCode = nationalCode;
@@ -54,11 +54,11 @@ public class RoomReservation {
         this.lastName = lastName;
     }
 
-    public int getNationalCode() {
+    public String getNationalCode() {
         return nationalCode;
     }
 
-    public void setNationalCode(int nationalCode) {
+    public void setNationalCode(String nationalCode) {
         this.nationalCode = nationalCode;
     }
 

@@ -21,6 +21,7 @@ LoginServlet extends HttpServlet {
         writer.println("<html><body>");
 
         String name = request.getParameter("name");
+        String lastName = request.getParameter("lastName");
         String password = request.getParameter("password");
         String nationalCode = request.getParameter("nationalCode");
         Pattern pattern = Pattern.compile("[0-9]{10}");
@@ -33,6 +34,7 @@ LoginServlet extends HttpServlet {
             }else {
                 HttpSession session = request.getSession();
                 session.setAttribute("name", name);
+                session.setAttribute("lastName", lastName);
                 session.setAttribute("password", password);
                 session.setAttribute("nationalCode", nationalCode);
                 request.getRequestDispatcher("/profile").include(request, response);
