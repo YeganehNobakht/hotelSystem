@@ -18,7 +18,7 @@ public class HibernateUtil {
                     put("hibernate.connection.url","jdbc:mysql://localhost:3306/hotel_reservation");
                     put("hibernate.connection.username","root");
                     put("hibernate.connection.password","root");
-                    put("hibernate.hbm2ddl.auto","create-drop");
+                    put("hibernate.hbm2ddl.auto","update");
                     put("hibernate.show_sql","true");
                 }
 
