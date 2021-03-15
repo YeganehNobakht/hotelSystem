@@ -16,16 +16,18 @@ public class UserCheckFilter implements Filter {
 
         resp.setContentType("text/html");
         PrintWriter out = resp.getWriter();
-        int nationalCode=Integer.parseInt(req.getParameter("nationalCode"));
-        Pattern pattern = Pattern.compile("[0-9]{10}");
-        Matcher matcher = pattern.matcher(String.valueOf(nationalCode));
-        if (matcher.matches()){
-            chain.doFilter(req, resp);
-        }else{
-            out.println("Invalid NationalCode:");
-            RequestDispatcher rd= req.getRequestDispatcher("form.html");
-            rd.forward(req,resp);
-        }
+
+            int nationalCode = Integer.parseInt(req.getParameter("nationalCode"));
+            Pattern pattern = Pattern.compile("[0-9]{10}");
+            Matcher matcher = pattern.matcher(String.valueOf(nationalCode));
+            if (matcher.matches()) {
+                chain.doFilter(req, resp);
+            } else {
+                out.println("Invalid NationalCode:");
+                req.getRequestDispatcher("index.jsp").include(req, resp);
+            }
+
+
     }
 
     public void init(FilterConfig config) throws ServletException {

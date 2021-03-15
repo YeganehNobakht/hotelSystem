@@ -15,38 +15,53 @@ import java.util.regex.Pattern;
 public class
 LoginServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        response.setContentType("text/html");
-        response.setContentType("text/html");
-        PrintWriter writer = response.getWriter();
-        writer.println("<html><body style=\"background-color:powderblue;\">");
+        try {
+            response.setContentType("text/html");
+            response.setContentType("text/html");
+            PrintWriter writer = response.getWriter();
+            writer.println("<html><body style=\"background-color:powderblue;\">");
 
-        String name = request.getParameter("name");
-        String lastName = request.getParameter("lastName");
-        String password = request.getParameter("password");
-        String nationalCode = request.getParameter("nationalCode");
-        Pattern pattern = Pattern.compile("[0-9]{10}");
-        Matcher matcher = pattern.matcher(String.valueOf(nationalCode));
+            String name = request.getParameter("name");
+            String lastName = request.getParameter("lastName");
+            String password = request.getParameter("password");
+            String nationalCode = request.getParameter("nationalCode");
+            Pattern pattern = Pattern.compile("[0-9]{10}");
+            Matcher matcher = pattern.matcher(String.valueOf(nationalCode));
+            if (name != null) {
 
+                if (name.equalsIgnoreCase("Masoume") && password.equalsIgnoreCase("12345")) {
+                    if (!matcher.matches()) {
+                        writer.println("Invalid national code.");
+                    } else {
+                        HttpSession session = request.getSession();
+                        session.setAttribute("name", name);
+                        session.setAttribute("lastName", lastName);
+                        session.setAttribute("password", password);
+                        session.setAttribute("nationalCode", nationalCode);
+                        request.getRequestDispatcher("/profile").include(request, response);
+                    }
+                } else {
+                    writer.println("Error: please try again.");
+                    request.getRequestDispatcher("index.jsp").include(request, response);
+                }
+            }else{
+                HttpSession session = request.getSession(false);
+                String uname = (String) session.getAttribute("name");
+                if (uname!=null){
+                    writer.println("Welcome "+uname);
+                }else {
+                    writer.println("Please login first");
+                    request.getRequestDispatcher("index.jsp").include(request, response);
 
-        if (name.equalsIgnoreCase("Masoume") && password.equalsIgnoreCase("12345")) {
-            if (!matcher.matches()) {
-                writer.println("Invalid national code.");
-            }else {
-                HttpSession session = request.getSession();
-                session.setAttribute("name", name);
-                session.setAttribute("lastName", lastName);
-                session.setAttribute("password", password);
-                session.setAttribute("nationalCode", nationalCode);
-                request.getRequestDispatcher("/profile").include(request, response);
+                }
             }
-        } else {
-            writer.println("Error: please try again.");
-            request.getRequestDispatcher("index.jsp").include(request, response);
+
+            writer.println("</html></body>");
+            writer.close();
+
+        }catch (Exception e){
+            System.out.println(e);
         }
-
-        writer.println("</html></body>");
-        writer.close();
-
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

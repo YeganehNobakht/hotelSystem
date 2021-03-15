@@ -16,7 +16,7 @@ public class LogoutServlet extends HttpServlet {
         PrintWriter writer = response.getWriter();
         writer.println("<html><body style=\"background-color:powderblue;\">");
         HttpSession session = request.getSession(false);
-        if (session != null) {
+        if (session.getAttribute("name") != null) {
             session.invalidate();
             writer.println("You are successfully logged out");
             writer.println("<br><a href='index.jsp'>Login</a>");

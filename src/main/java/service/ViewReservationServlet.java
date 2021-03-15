@@ -17,7 +17,7 @@ public class ViewReservationServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         HttpSession session = request.getSession(false);
-        if (session!=null) {
+        if (session.getAttribute("name")!=null) {
             writer.println("<html><body style=\"background-color:powderblue;\">");
             writer.println("welcome " + session.getAttribute("name"));
             String nationalCode = (String) request.getSession(false).getAttribute("nationalCode");
@@ -26,7 +26,9 @@ public class ViewReservationServlet extends HttpServlet {
             writer.println("</body></html>");
         }else{
             writer.println("Please login first");
+            request.getRequestDispatcher("index.jsp").include(request, response);
         }
+        writer.close();
 
     }
 

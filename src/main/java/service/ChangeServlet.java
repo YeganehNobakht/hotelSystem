@@ -18,9 +18,9 @@ public class ChangeServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
+        writer.println("<html><body style=\"background-color:powderblue;\">");
         HttpSession session = request.getSession(false);
-        if (session!=null) {
-            writer.println("<html><body style=\"background-color:powderblue;\">");
+        if (session.getAttribute("name")!=null) {
             writer.println("welcome " + session.getAttribute("name"));
             int reserveCode = Integer.parseInt(request.getParameter("reserveCode"));
             int roomCapacity = Integer.parseInt(request.getParameter("Capacity"));
@@ -38,8 +38,9 @@ public class ChangeServlet extends HttpServlet {
             writer.println("</body></html>");
         }else{
             writer.println("Please login first");
+            request.getRequestDispatcher("index.jsp").include(request, response);
         }
-
+        writer.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

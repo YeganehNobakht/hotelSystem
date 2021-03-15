@@ -15,7 +15,7 @@ public class HotelReservationActionsServlet extends HttpServlet {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
         HttpSession session = request.getSession(false);
-        if (session != null) {
+        if (session.getAttribute("name") != null) {
             writer.println("<!DOCTYPE html>\n" +
                     "<html lang=\"en\">\n" +
                     "<head>\n" +
@@ -90,9 +90,11 @@ public class HotelReservationActionsServlet extends HttpServlet {
                     "</html>\n" +
                     "</body>\n" +
                     "</html>");
-        }else
+        }else{
             writer.println("Please login first");
+        request.getRequestDispatcher("index.jsp").include(request, response);}
     }
+
 
 
 

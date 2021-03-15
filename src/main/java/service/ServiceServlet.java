@@ -14,14 +14,12 @@ public class ServiceServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
+        writer.println("<html><body style=\"background-color:powderblue;\">");
         HttpSession session = request.getSession(false);
+        String uname = (String) session.getAttribute("name");
         //writer.println("<body><html>");
-        if (session!=null) {
-            writer.println("welcome " + session.getAttribute("name"));
-
-            // int roomCapacity = Integer.parseInt(request.getParameter("Capacity"));
-            // Date startDate = Date.valueOf(request.getParameter("startDate"));
-            // Date endDate = Date.valueOf(request.getParameter("endDate"));
+        if (uname!=null) {
+            writer.println("welcome " +uname);
 
             String operation = request.getParameter("operation");
             if (operation.equalsIgnoreCase("reserve"))
@@ -33,9 +31,12 @@ public class ServiceServlet extends HttpServlet {
             else if (operation.equalsIgnoreCase("cancel_reserve"))
                 request.getRequestDispatcher("cancel.html").include(request, response);
 
-            // writer.println("</html></body>");
-        }else
+        }else {
             writer.println("Please login first");
+            request.getRequestDispatcher("index.jsp").include(request, response);
+        }
+        writer.println("</html></body>");
+        writer.close();
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

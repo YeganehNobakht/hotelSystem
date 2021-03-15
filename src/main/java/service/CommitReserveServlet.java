@@ -18,9 +18,9 @@ public class CommitReserveServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html");
         PrintWriter writer = response.getWriter();
+        writer.println("<html><body style=\"background-color:powderblue;\">");
         HttpSession session = request.getSession(false);
-        if (session!=null) {
-            writer.println("<html><body style=\"background-color:powderblue;\">");
+        if (session.getAttribute("name")!=null) {
             writer.println("Welcome " + session.getAttribute("name") + "<br>");
 
             int roomCapacity = Integer.parseInt(request.getParameter("Capacity"));
@@ -43,13 +43,15 @@ public class CommitReserveServlet extends HttpServlet {
             roomReservationDao.save(roomReservation);
             writer.println("Room successfully booked\nYour reservation Code is " + maxReserveNumber);
             writer.println("<br><a href='logout'>Logout</a>");
-            writer.println("</body></html>");
         }
         else {
             writer.println("Please login first");
+            request.getRequestDispatcher("index.jsp").include(request, response);
         }
-
+        writer.println("</body></html>");
+        writer.close();
     }
+
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         doPost(request,response);
