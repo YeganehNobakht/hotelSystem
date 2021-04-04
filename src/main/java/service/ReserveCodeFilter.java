@@ -15,7 +15,7 @@ public class ReserveCodeFilter implements Filter {
     public void destroy() {
     }
 
-    public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain) throws ServletException, IOException {
+    public void doFilter(ServletRequest req , ServletResponse resp, FilterChain chain) throws ServletException, IOException {
         resp.setContentType("text/html");
         PrintWriter writer = resp.getWriter();
 
@@ -28,16 +28,16 @@ public class ReserveCodeFilter implements Filter {
                     chain.doFilter(req, resp);
                 } else {
                     writer.println("Invalid Reserve Code");
-                    req.getRequestDispatcher("Change.html").include(req, resp);
+                    req.getRequestDispatcher("Change.jsp").include(req, resp);
                 }
             }
             else{
                 writer.println("Invalid Reserve Code");
-                req.getRequestDispatcher("change.html").include(req, resp);
+                req.getRequestDispatcher("change.jsp").include(req, resp);
             }
         }catch (NumberFormatException e){
             writer.println("Invalid Reservation Code, Reservation code must be a number");
-            req.getRequestDispatcher("Change.html").include(req, resp);
+            req.getRequestDispatcher("Change.jsp").include(req, resp);
         }
     }
 

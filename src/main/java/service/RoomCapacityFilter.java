@@ -25,11 +25,11 @@ public class RoomCapacityFilter implements Filter {
                         chain.doFilter(req, resp);
                     } else {
                         out.println("Invalid Capacity:");
-                        req.getRequestDispatcher("reserveRoom.html").include(req, resp);
+                        req.getRequestDispatcher("reserveRoom.jsp").include(req, resp);
                     }
             } else {
                 out.println("Please select room capacity");
-                req.getRequestDispatcher("reserveRoom.html").include(req, resp);
+                req.getRequestDispatcher("reserveRoom.jsp").include(req, resp);
             }
         }catch (Exception e){
             System.out.println(e);

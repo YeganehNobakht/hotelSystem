@@ -25,14 +25,14 @@ public class ReserveDateFilter implements Filter {
             if (startDate.before(cal.getTime())) {
                 //  myDate must be yesterday or earlier
                 writer.println("Invalid start date");
-                req.getRequestDispatcher("reserveRoom.html").include(req, resp);
+                req.getRequestDispatcher("reserveRoom.jsp").include(req, resp);
             } else {
                 //  myDate must be today or later
                 if (endDate.after(startDate)) {
                     chain.doFilter(req, resp);
                 } else {
                     writer.println("Invalid date");
-                    req.getRequestDispatcher("reserveRoom.html").include(req, resp);
+                    req.getRequestDispatcher("reserveRoom.jsp").include(req, resp);
                 }
             }
         }catch (Exception e){

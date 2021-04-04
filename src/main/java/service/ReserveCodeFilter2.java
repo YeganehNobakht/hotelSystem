@@ -27,16 +27,16 @@ public class ReserveCodeFilter2 implements Filter {
                     chain.doFilter(req, resp);
                 } else {
                     writer.println("Invalid Reserve Code");
-                    req.getRequestDispatcher("cancel.html").include(req, resp);
+                    req.getRequestDispatcher("cancel.jsp").include(req, resp);
                 }
             }
             else{
                 writer.println("Invalid Reserve Code");
-                req.getRequestDispatcher("cancel.html").include(req, resp);
+                req.getRequestDispatcher("cancel.jsp").include(req, resp);
             }
         }catch (NumberFormatException e){
             writer.println("Invalid Reservation Code, Reservation code must be a number");
-            req.getRequestDispatcher("cancel.html").include(req, resp);
+            req.getRequestDispatcher("cancel.jsp").include(req, resp);
         }
     }
 

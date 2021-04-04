@@ -23,13 +23,13 @@ public class ServiceServlet extends HttpServlet {
 
             String operation = request.getParameter("operation");
             if (operation.equalsIgnoreCase("reserve"))
-                request.getRequestDispatcher("reserveRoom.html").include(request, response);
+                request.getRequestDispatcher("reserveRoom.jsp").forward(request, response);
             else if (operation.equalsIgnoreCase("change_reserve"))
-                request.getRequestDispatcher("change.html").include(request, response);
+                request.getRequestDispatcher("change.jsp").forward(request, response);
             else if (operation.equalsIgnoreCase("see_reserve"))
                 request.getRequestDispatcher("/view").forward(request, response);
             else if (operation.equalsIgnoreCase("cancel_reserve"))
-                request.getRequestDispatcher("cancel.html").include(request, response);
+                request.getRequestDispatcher("cancel.jsp").forward(request, response);
 
         }else {
             writer.println("Please login first");
